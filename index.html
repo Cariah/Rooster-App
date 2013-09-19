@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="ui-mobile-rendering">
+<head>
+  <meta charset="utf-8" />
+  <title>Rooster App</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jqm-config.js"></script>
+  <script src="js/jquery.mobile-1.3.1.min.js"></script>
+  <script src="js/underscore-min.js"></script>
+  <script src="js/backbone.js"></script>
+  <script src="js/swipe.js"></script>
+  <!-- HomeView -->
+  <script type="text/template" id="home">
+    <div data-role="panel" id="panel" data-position="left" data-theme="a" data-display="push">
+      <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider" data-theme="d">Locaties</li>
+        <li class="ui-icon-alt"><a href="#loc2">Drachten</a></li>
+        <li class="ui-icon-alt"><a href="#loc3">Emmeloord</a></li>
+        <li class="ui-icon-alt"><a href="#loc5">Sneek</a></li>
+        <li class="ui-icon-alt"><a href="#loc7">Leeuwarden</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+      <a data-iconpos="left" data-theme="a" href="#panel" data-role="button" data-icon="flat-menu">Menu</a>
+      <h1>Rooster App</h1>
+      <a data-iconpos="right" data-theme="a" href="#settings" data-role="button" data-icon="flat-settings">Settings</a>
+    </div>
+
+    <div data-role="content" role="main">
+      <ul data-role="listview" data-inset="false">
+        <li data-role="list-divider" data-theme="d">Locaties</li>
+        <li class="ui-icon-alt"><a href="#loc2"><h1>Drachten</h1></a></li>
+        <li class="ui-icon-alt"><a href="#loc3"><h1>Emmeloord</h1></a></li>
+        <li class="ui-icon-alt"><a href="#loc5"><h1>Sneek</h1></a></li>
+        <li class="ui-icon-alt"><a href="#loc7"><h1>Leeuwarden</h1></a></li>
+      </ul>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+      <a data-iconpos="left" data-theme="a"
+      data-role="button"> &copy; Roelof Kallenkoot </a>
+    </div>
+    <div id="highlight"> </div>
+  </script>
+  <!-- /HomeView -->
+
+  <!-- Afd -->
+  <script type="text/template" id="afd">
+    <div data-role="panel" id="panel" data-position="left" data-theme="a" data-display="push">
+      <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider" data-theme="d">Locaties</li>
+        <li class="ui-icon-alt"><a href="#loc2">Drachten</a></li>
+        <li class="ui-icon-alt"><a href="#loc3">Emmeloord</a></li>
+        <li class="ui-icon-alt"><a href="#loc5">Sneek</a></li>
+        <li class="ui-icon-alt"><a href="#loc7">Leeuwarden</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+      <a data-iconpos="left" data-theme="a" href="#panel" data-role="button" data-icon="flat-menu">Menu</a>
+      <h1>Afdelingen </h1>
+      <a data-iconpos="right" data-theme="a" href="#home" data-role="button" data-icon="home">Home</a>
+    </div>
+
+    <div data-role="content" role="main">
+      <ul data-role="listview" data-inset="false" data-filter="true" id="afdCon">
+        <li data-role="list-divider" data-theme="d">Afdelingen</li>
+      </ul>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+      <a id="back" data-direction="reverse" data-rel="back" data-iconpos="left" data-theme="a" href="javascript:window.history.back();" data-role="button" data-icon="back">Back</a> 
+    </div>
+    <div id="highlight"> </div>
+  </script>
+  <!-- /Afd -->
+
+  <!-- Klas -->
+  <script type="text/template" id="klas">
+    <div data-role="panel" id="panel" data-position="left" data-theme="a" data-display="push">
+      <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider" data-theme="d">Locaties</li>
+        <li class="ui-icon-alt"><a href="#loc2">Drachten</a></li>
+        <li class="ui-icon-alt"><a href="#loc3">Emmeloord</a></li>
+        <li class="ui-icon-alt"><a href="#loc5">Sneek</a></li>
+        <li class="ui-icon-alt"><a href="#loc7">Leeuwarden</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+      <a data-iconpos="left" data-theme="a" href="#panel" data-role="button" data-icon="flat-menu">Menu</a>
+      <h1>Klassen</h1>
+      <a data-iconpos="right" data-transition="flip" data-theme="a" href="#home" data-role="button" data-icon="home">Home</a>
+    </div>
+
+    <div data-role="content" role="main">
+      <ul data-role="listview" data-inset="false" data-filter="true" id="klasCon">
+        <li data-role="list-divider" data-theme="d">Klassen</li>
+      </ul>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+      <a id="back" data-direction="reverse" data-iconpos="left" data-theme="a" href="javascript:window.history.back();" data-role="button" data-icon="back">Back</a> 
+    </div>
+    <div id="highlight"> </div>
+  </script>
+  <!-- /Klas -->
+
+  <!-- Rooster -->
+  <script type="text/template" id="rooster">
+    <div data-role="panel" id="panel" data-position="left" data-theme="a" data-display="push">
+      <ul data-role="listview" id="roosterpnl" data-inset="true">
+        <li data-role="list-divider" data-theme="d">Locaties</li>
+        <li class="ui-icon-alt"><a href="#loc2">Drachten</a></li>
+        <li class="ui-icon-alt"><a href="#loc3">Emmeloord</a></li>
+        <li class="ui-icon-alt"><a href="#loc5">Sneek</a></li>
+        <li class="ui-icon-alt"><a href="#loc7">Leeuwarden</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+      <a data-iconpos="left" data-theme="a" href="#panel" data-role="button" data-icon="flat-menu">Menu</a>
+      <h1><%= R %></h1>
+      <a data-iconpos="right" data-transition="flip" data-theme="a" href="#home" data-role="button" data-icon="home">Home</a>
+    </div>
+
+    <div data-role="content" role="main">
+
+      <div id="slider" class="swipe">
+        <div class="swipe-wrap">
+
+          <div>
+            <div id="day1">
+            <ul data-role="listview" data-inset="false">
+              <li data-role="list-divider" data-theme="d">Maandag</li>
+            </ul>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+            <span>1</span><br>
+              </div>
+            </div>
+
+            <div>
+              <ul data-role="listview" data-inset="false">
+                <li data-role="list-divider" data-theme="d">Dinsdag</li>
+              </ul>
+              <div id="day2">
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+              <span>2</span><br>
+                </div>
+              </div>
+
+              <div>
+                <ul data-role="listview" data-inset="false">
+                  <li data-role="list-divider" data-theme="d">Woensdag</li>
+                </ul>
+                <div id="day3">
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+                <span>3</span><br>
+
+                  </div>
+                </div>
+
+                <div>
+                  <ul data-role="listview" data-inset="false">
+                    <li data-role="list-divider" data-theme="d">Donderdag</li>
+                  </ul>
+                  <div id="day4">
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                  <span>4</span><br>
+                    </div>
+                  </div>
+
+                  <div>
+                    <ul data-role="listview" data-inset="false">
+                      <li data-role="list-divider" data-theme="d">Vrijdag</li>
+                    </ul>
+                    <div id="day5">
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                    <span>5</span><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div data-theme="a" data-role="footer" data-position="fixed">
+                <div data-role="controlgroup" data-type="horizontal">
+                <a id="back" data-direction="reverse" data-rel="back" data-iconpos="left" data-theme="a" href="javascript:window.history.back();" data-role="button" data-icon="back">Back</a>
+                  <a id="prevbtn" class="ui-icon-alt" data-role="button" href="javascript:mySwipe.next();" data-theme="a" data-icon="arrow-l"> Prev </a>
+                  <a id="nextbtn" class="ui-icon-alt" data-role="button" href="javascript:mySwipe.prev();" data-theme="a" data-icon="arrow-r" data-iconpos="right"> Next </a>
+                </div>
+              </div>
+            </div>
+            <div id="highlight"> </div>
+          </script>
+          <!-- /Rooster -->
+
+          <!-- afdTemplate -->
+          <script id="afdTemplate" type="text/template">
+            <a href="#loc<%= instanceId %>/<%= afdId %>"><h2><%= Afdeling %></h2></a>
+          </script>
+          <!-- afdTemplate -->
+
+          <!-- klasTemplate -->
+          <script id="klasTemplate" type="text/template">
+            <a href="#loc<%= instanceId %>/<%= afdId %>/<%= R %>"><h2><%= R %></h2></a>
+          </script>
+          <!-- /klasTemplte -->
+
+          <!-- Settings Page --> 
+          <script type="text/template" id="settings">
+            <div data-theme="e" data-role="header">
+              <h1>Settings</h1>
+            </div>
+
+            <div data-role="content">
+              <ul data-role="listview" data-divider-theme="b" data-inset="false">
+              </ul>
+            </div>
+
+            <div data-theme="a" data-role="footer" data-position="fixed">
+              <a data-iconpos="left" data-direction="reverse" data-theme="a" href="#locaties" data-role="button" data-icon="back">Back</a> 
+            </div>
+            <div id="highlight"> </div>
+          </script>
+          <!-- /Settings Page -->
+
+          <!-- locDivider -->
+          <script id="locDivider" type="text/template">
+            <li data-role="list-divider" data-theme="d"><%= locatie %></li>
+          </script>
+          <!-- /locDivider -->
+
+        </head>
+        <body>
+
+
+          <script src="js/main.js"></script>
+        </body>
+        </html>
