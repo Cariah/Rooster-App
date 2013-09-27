@@ -10,6 +10,7 @@
 .swipe {
   overflow: hidden;
   visibility: hidden;
+  position: relative;
 }
 .swipe-wrap {
   overflow: hidden;
@@ -24,8 +25,4 @@
 /* END required styles */
 .swipe-wrap > div > span {
 	padding: 25px 10px 25px 10px;
-}
-
-#div > .ui-listview , .ui-panel-inner > .ui-listview {
-	margin : 0;
 }

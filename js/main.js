@@ -128,9 +128,6 @@ AfdView = Backbone.View.extend({
 
 	initialize: function(options){
 		this.loc = this.options.loc;
-		// Need ajax call that gets all Reggroups for loc
-		// We're doing this @ the afdView because it differs
-		// Per location, just like the afdelingen
 	},
 
 	render: function(){
@@ -271,8 +268,8 @@ RoosterView = Backbone.View.extend({
 	},
 
 	render: function(){
-		$(this.el).html(this.template({ R: "BAMI" }));
-		$(this.el).append("<script type='text/javascript'>var elem = document.getElementById('slider');window.mySwipe = Swipe(elem, { startSlide: 2, continuous: true });</script>");
+		$(this.el).html(this.template({ R: "Insert Reg here" }));
+		$(this.el).append("<script type='text/javascript'>var elem = document.getElementById('slider');window.mySwipe = Swipe(elem, { startSlide: 0, continuous: true });setTimeout(function(){mySwipe.setup();}, 250);</script>");
 		return this;
 	}
 
@@ -339,17 +336,13 @@ var AppRouter = Backbone.Router.extend({
 			afd: afdId,
 			reg: klas
 		}));
-		// Swipe 2 handle for #rooster page
-		$('#rooster').on('pageshow',function(){
-			window.slider = Swipe(document.getElementById('slider'));
-		});
 	},
 
 	changePage:function (page) {
 		$(page.el).attr('data-role', 'page');
 		page.render();
 		$('body').append($(page.el));
-		var transition = "slide";//$.mobile.defaultPageTransition;
+		var transition = "slide";	//$.mobile.defaultPageTransition;
 		// We don't want to slide the first page
 		if (this.firstPage) {
 			transition = 'fade';

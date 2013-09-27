@@ -9,12 +9,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
   <link rel="stylesheet" type="text/css" href="css/main.css" />
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jqm-config.js"></script>
-  <script src="js/jquery.mobile-1.3.1.min.js"></script>
-  <script src="js/underscore-min.js"></script>
-  <script src="js/backbone.js"></script>
-  <script src="js/swipe.js"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/jqm-config.js" type="text/javascript"></script>
+  <script src="js/jquery.mobile-1.3.1.min.js" type="text/javascript"></script>
+  <script src="js/underscore-min.js" type="text/javascript"></script>
+  <script src="js/backbone.js" type="text/javascript"></script>
+  <script src="js/swipe.js" type="text/javascript"></script>
   <!-- HomeView -->
   <script type="text/template" id="home">
     <div data-role="panel" id="panel" data-position="left" data-theme="a" data-display="push">
@@ -124,14 +124,14 @@
       <a data-iconpos="right" data-transition="flip" data-theme="a" href="#home" data-role="button" data-icon="home">Home</a>
     </div>
 
-    <div data-role="content" role="main">
+    <div data-role="content" role="main" style="padding:0">
 
-      <div id="slider" class="swipe">
+      <div id="slider" class="swipe" style="margin:0 auto">
         <div class="swipe-wrap">
 
           <div>
             <div id="day1">
-            <ul data-role="listview" data-inset="false">
+            <ul data-role="listview" data-inset="false" style="margin: 0px">
               <li data-role="list-divider" data-theme="d">Maandag</li>
             </ul>
             <span>1</span><br>
@@ -149,7 +149,7 @@
             </div>
 
             <div>
-              <ul data-role="listview" data-inset="false">
+              <ul data-role="listview" data-inset="false" style="margin: 0px">
                 <li data-role="list-divider" data-theme="d">Dinsdag</li>
               </ul>
               <div id="day2">
@@ -169,7 +169,7 @@
               </div>
 
               <div>
-                <ul data-role="listview" data-inset="false">
+                <ul data-role="listview" data-inset="false" style="margin: 0px">
                   <li data-role="list-divider" data-theme="d">Woensdag</li>
                 </ul>
                 <div id="day3">
@@ -190,7 +190,7 @@
                 </div>
 
                 <div>
-                  <ul data-role="listview" data-inset="false">
+                  <ul data-role="listview" data-inset="false" style="margin: 0px">
                     <li data-role="list-divider" data-theme="d">Donderdag</li>
                   </ul>
                   <div id="day4">
@@ -209,7 +209,7 @@
                   </div>
 
                   <div>
-                    <ul data-role="listview" data-inset="false">
+                    <ul data-role="listview" data-inset="false" style="margin: 0px">
                       <li data-role="list-divider" data-theme="d">Vrijdag</li>
                     </ul>
                     <div id="day5">
@@ -233,8 +233,8 @@
               <div data-theme="a" data-role="footer" data-position="fixed">
                 <div data-role="controlgroup" data-type="horizontal">
                 <a id="back" data-direction="reverse" data-rel="back" data-iconpos="left" data-theme="a" href="javascript:window.history.back();" data-role="button" data-icon="back">Back</a>
-                  <a id="prevbtn" class="ui-icon-alt" data-role="button" href="javascript:mySwipe.next();" data-theme="a" data-icon="arrow-l"> Prev </a>
-                  <a id="nextbtn" class="ui-icon-alt" data-role="button" href="javascript:mySwipe.prev();" data-theme="a" data-icon="arrow-r" data-iconpos="right"> Next </a>
+                  <a id="prevbtn" class="ui-icon-alt" data-role="button" href="javascript:mySwipe.prev();" data-theme="a" data-icon="arrow-l"> Prev </a>
+                  <a id="nextbtn" class="ui-icon-alt" data-role="button" href="javascript:mySwipe.next();" data-theme="a" data-icon="arrow-r" data-iconpos="right"> Next </a>
                 </div>
               </div>
             </div>
