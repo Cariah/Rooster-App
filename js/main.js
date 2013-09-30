@@ -202,7 +202,7 @@ KlasView = Backbone.View.extend({
 		}, this);
 
 		Backbone.ajax({
-			url: 'http://192.168.0.106/RESTra/index.php/klas' + this.loc,
+			url: 'http://localhost/RESTra/index.php/klas' + this.loc,
 			crossDomain: true,
 			dataType: 'jsonp',
 			jsonpCallback: 'callback',
@@ -273,15 +273,6 @@ KlasView = Backbone.View.extend({
 	}
 });
 
-/* Unused
-UurView = Backbone.View.extend({
-	template: _.template($('#uurTemplate').html()),
-	render: function() {
-		this.$el.html(this.template(this.model.attributes));
-		return this;
-	}
-});
-*/
 
 var LHView = Backbone.View.extend({
 	tagName: 'div', // Default
@@ -333,7 +324,7 @@ RoosterView = Backbone.View.extend({
 		this.loc = this.options.loc;
 		this.afd = this.options.afd;
 		this.reg = this.options.reg;
-		this.url = "http://192.168.0.106/RESTra/index.php/rooster" + this.loc + "/" + this.reg;
+		this.url = "http://localhost/RESTra/index.php/rooster" + this.loc + "/" + this.reg;
 		// renderUren
 		urenCol.bind("renderUren", function(){
 			console.log("renderUren");
