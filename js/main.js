@@ -89,6 +89,18 @@ var Klas = Backbone.Model.extend({
 	}
 });
 
+// Uur Model
+var Uur = Backbone.Model.extend({
+	defaults: {
+		W: '',	// weekday
+		LH: '',	// lessonhour
+		T: '',	// teacher
+		L: '',	// lesson
+		C: '',	// classroom
+		B: '',	// blockend
+	}
+});
+
 // Afdelingen Collection
 var Afdelingen = Backbone.Collection.extend({
 	model: Afdeling
@@ -97,6 +109,10 @@ var Afdelingen = Backbone.Collection.extend({
 // Klas Collection
 var Klassen = Backbone.Collection.extend({
 	model: Klas
+});
+
+var Uren = Backbone.Collection.extend({
+	model: Uur
 });
 
 // HomeView
@@ -164,8 +180,8 @@ KlasView = Backbone.View.extend({
 		this.afd = this.options.afd;
 		this.mChars = this.compareChars(this.loc, this.afd);
 
-		klassenCol.bind("renderklassen", function(){
-			console.log("renderklassen ");
+		klassenCol.bind("renderKlassen", function(){
+			console.log("renderKlassen ");
 			// Render elke klas die Chars matched
 			// Compare mChars with afdData
 			var list = this.$('#klasCon');
@@ -186,16 +202,16 @@ KlasView = Backbone.View.extend({
 		}, this);
 
 		Backbone.ajax({
-			url :'http://localhost/RESTra/index.php/klas' + this.loc,
+			url: 'http://192.168.0.106/RESTra/index.php/klas' + this.loc,
 			crossDomain: true,
 			dataType: 'jsonp',
 			jsonpCallback: 'callback',
 			success : function(val){
 				klassenCol.set(val);
-				klassenCol.trigger('renderklassen');
+				klassenCol.trigger('renderKlassen');
 			},
 			error : function(val){
-				console.log("Error in Backbone.ajax");
+				console.log("Error in Klassen Backbone.ajax");
 			}
 		});
 
@@ -257,18 +273,135 @@ KlasView = Backbone.View.extend({
 	}
 });
 
+/* Unused
+UurView = Backbone.View.extend({
+	template: _.template($('#uurTemplate').html()),
+	render: function() {
+		this.$el.html(this.template(this.model.attributes));
+		return this;
+	}
+});
+*/
+
+var LHView = Backbone.View.extend({
+	tagName: 'div', // Default
+	className: 'ui-block-a',
+	template: _.template($('#LHTemplate').html()),
+	render: function(){
+		this.$el.html(this.template(this.model.attributes));
+		return this;
+	}
+});
+
+var LessonView = Backbone.View.extend({
+	tagName: 'div',
+	className: 'ui-block-b',
+	template: _.template($('#LessonTemplate').html()),
+	render: function(){
+		this.$el.html(this.template(this.model.attributes));
+		return this;
+	}
+});
+
+var TeacherView = Backbone.View.extend({
+	tagName: 'div',
+	className: 'ui-block-c',
+	template: _.template($('#TeacherTemplate').html()),
+	render: function(){
+		this.$el.html(this.template(this.model.attributes));
+		return this;
+	}
+});
+
+var ClassView = Backbone.View.extend({
+	tagName: 'div',
+	className: 'ui-block-d',
+	template: _.template($('#ClassTemplate').html()),
+	render: function(){
+		this.$el.html(this.template(this.model.attributes));
+		return this;
+	}
+});
+
 // RoosterView
 RoosterView = Backbone.View.extend({
 	template: _.template($('#rooster').html()),
 
 	initialize: function(options){
+		// Uren Collection
+		var urenCol = new Uren();
 		this.loc = this.options.loc;
 		this.afd = this.options.afd;
 		this.reg = this.options.reg;
+		this.url = "http://192.168.0.106/RESTra/index.php/rooster" + this.loc + "/" + this.reg;
+		// renderUren
+		urenCol.bind("renderUren", function(){
+			console.log("renderUren");
+			urenCol.each(function(uurItem){
+				console.log(uurItem.toJSON());
+				// Switch uurItem.get('weekday')
+				var list;
+				var LessonHour = uurItem.get('LH');
+				var Blockend = uurItem.get('B');
+				switch(uurItem.get('W')){
+					case 1:
+						list = $('#day1');
+						break;
+					case 2:
+						list = $('#day2');
+						break;
+					case 3:
+						list = $('#day3');
+						break;
+					case 4:
+						list = $('#day4');
+						break;
+					case 5:
+						list = $('#day5');
+						break;
+				}
+
+				while(uurItem.get('LH') != uurItem.get('B')){
+					var lhView = new LHView({  model: uurItem });
+					var lessonView = new LessonView({ model: uurItem });
+					var teacherView = new TeacherView({ model: uurItem });
+					var classView = new ClassView({ model: uurItem });
+					list.append(lhView.render().el);
+					list.append(lessonView.render().el);
+					list.append(teacherView.render().el);
+					list.append(classView.render().el);
+					uurItem.set({ 'LH': uurItem.get('LH')+1 });
+				}
+
+				var lhView = new LHView({  model: uurItem });
+				var lessonView = new LessonView({ model: uurItem });
+				var teacherView = new TeacherView({ model: uurItem });
+				var classView = new ClassView({ model: uurItem });
+				list.append(lhView.render().el);
+				list.append(lessonView.render().el);
+				list.append(teacherView.render().el);
+				list.append(classView.render().el);
+			});
+		}, this);
+
+		// Backbone.ajax rooster data
+		Backbone.ajax({
+			url: this.url,
+			crossDomain: true,
+			dataType: 'jsonp',
+			jsonpCallback: 'callback',
+			success : function(val){
+				urenCol.set(val);
+				urenCol.trigger('renderUren');
+			},
+			error : function(val){
+				console.log('Error in Rooster backbone.ajax.');
+			}
+		});
 	},
 
 	render: function(){
-		$(this.el).html(this.template({ R: "Insert Reg here" }));
+		$(this.el).html(this.template({ R: this.reg }));
 		$(this.el).append("<script type='text/javascript'>var elem = document.getElementById('slider');window.mySwipe = Swipe(elem, { startSlide: 0, continuous: true });setTimeout(function(){mySwipe.setup();}, 250);</script>");
 		return this;
 	}

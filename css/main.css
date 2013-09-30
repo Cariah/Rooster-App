@@ -8,21 +8,41 @@
 /* Swipe 2 required styles */
 
 .swipe {
-  overflow: hidden;
-  visibility: hidden;
-  position: relative;
+	overflow: hidden;
+	visibility: hidden;
+	position: relative;
 }
 .swipe-wrap {
-  overflow: hidden;
-  position: relative;
+	overflow: hidden;
+	position: relative;
 }
 .swipe-wrap div {
-  float:left;
-  width:100%;
-  position: relative;
+	float:left;
+	width:100%;
+	position: relative;
 }
 
 /* END required styles */
 .swipe-wrap > div > span {
 	padding: 25px 10px 25px 10px;
+}
+
+.ui-grid-c .ui-block-a {
+	width: 10%;
+}
+.ui-grid-c .ui-block-b {
+	width: 30%;
+}
+.ui-grid-c .ui-block-c {
+	width: 30%;
+}
+.ui-grid-c .ui-block-d {
+	width: 30%;
+}
+
+.ui-block-a .ui-bar-c,
+.ui-block-b .ui-bar-c,
+.ui-block-c .ui-bar-c,
+.ui-block-d .ui-bar-c {
+	height: 2.5em;
 }
